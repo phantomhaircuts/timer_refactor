@@ -7,25 +7,25 @@ var stopwatch = {
     resetButton: document.getElementById("reset"),
     h1: document.getElementsByTagName("h1")[0]
   },
-  listen: function(){
-    this.elements.startButton.addEventListener("click",function(){
+  listen(){
+    this.elements.startButton.addEventListener("click", () => {
       if(!this.timerId){
-	this.timerId = setInterval(function(){
-	    this.elements.h1.innerHTML = "Time Elapsed: " + this.seconds
-	    this.seconds++ // seconds = seconds + 1
-	}.bind(this),1000) // set interval
+        this.timerId = setInterval(() => {
+          this.elements.h1.innerHTML = `Time Elapsed: ${this.seconds}`
+          this.seconds++
+        }, 1000)
       }
-    }.bind(this))
+    })
 
-    this.elements.pauseButton.addEventListener("click",function(){
+    this.elements.pauseButton.addEventListener("click", () => {
       this.timerId = clearInterval(this.timerId)
-    }.bind(this))
+    })
 
-    this.elements.resetButton.addEventListener("click", function(){
+    this.elements.resetButton.addEventListener("click", () => {
       this.timerId = clearInterval(this.timerId)
       this.elements.h1.innerHTML = "Stop Watch"
       this.seconds = 0
-    }.bind(this))
+    })
   }
 }
 stopwatch.listen()
